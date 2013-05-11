@@ -20,20 +20,22 @@ compile the program:
 
 The Main-class is DNA_analyse.java
 
-- compile the program with the console line in the src folder 'javac -g:none -target 1.7 *.java'
-- if you want, create a .jar file with the command:
+- compile the program with the console line in the src folder 'javac -target 1.7 *.java'
+
+(- if you want, create a .jar file with the command:
   'jar cvmf META-INF/MANIFEST.MF DNA_analyse.jar *.class'
-  you need a MANIFEST.MF file lying in a subfolder named META-INF with the content:
+  you need a MANIFEST.MF file lying in a subfolder named META-INF with the following content:
   
     Manifest-Version: 1.0
     Class-Path: .
     Main-Class: DNA_analyse
+)
 
 ***************************************
 
 starting the compiled program:
 
-- execute the DNA_analyse.jar file directly (if you create one) or with the console line 'java DNA_analyse'
+- execute the DNA_analyse.jar file directly (if you create one) or start it with the console line 'java DNA_analyse'
 
 ***************************************
 
