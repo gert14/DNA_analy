@@ -4,11 +4,11 @@ assignment: DNA Sequencing
 
 ***************************************
 
-DNA analyse program.
+DNA analysis program.
 
 author: Gerhart Mende
 
-The programm is released unter the GPL 3.0 License, for more information read the LICENSE file.
+The program is released unter the GPL 3.0 License, for more information read the LICENSE file.
 
 ***************************************
 
@@ -41,12 +41,12 @@ starting the compiled program:
 
 description and user guide:
 
-When the program is started, you will see a white rectangle in the upper right corner, and above them three buttons.
+When the program starts, you will see a white rectangle in the upper right corner, and three buttons above them.
 Click the first button ('load example DNA') to load the DNA sequence given in the assignment, or click the second button ('load DNA from file') to load an other DNA sequence from your filesystem. The DNA sequence has to be available in .txt or .dat format.
 The loaded DNA seqence will shown in the white rectangle. The programm automatically inserts a newline after every 60 signs. If the sequence is to large for the rectangle, you can scroll the content with the scroll-bar on the right side, this bar will only shown if it's required. Click the third button ('clear DNA') to clear the rectangle.
 
 If a DNA sequence is loaded, the seven function-buttons on the left gets active. Click on one of the buttons to accomplish the specified analyse on the DNA sequence, you will see the result unter the button.
-The founded patterns in specified analyses will highlighted in the DNA sequence. When you click the button 'complementary', the complementary sequence will shown in the lower right corner in a second rectangle.
+The pattern matching of the different analyzes are marked in the DNA sequence. When you click the button 'complementary', the complementary sequence will shown in the lower right corner in a second rectangle.
 
 Click the function-button a second time to clear the result from the specified analyse.
 Click the EXIT button in the lower left corner to quit the program.
