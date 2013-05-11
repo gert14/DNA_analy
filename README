@@ -1,4 +1,10 @@
-DNA_analyse programm.
+5. Coding Contest 2013
+category: Java
+assignment: DNA Sequencing
+
+***************************************
+
+DNA analyse program.
 
 author: Gerhart Mende
 
@@ -10,8 +16,10 @@ The programm is released unter the GPL 3.0 License, for more information read th
 
 ***************************************
 
+The Main-class is DNA_analyse.java
+
 - compile the program with the console line 'javac -g:none -target 1.7 *.java'
-- if you want, create a .jra file with the command:
+- if you want, create a .jar file with the command:
   'jar cvmf META-INF/MANIFEST.MF DNA_analyse.jar *.class'
   you need a MANIFEST.MF file lying in a folder named META-INF with the content:
   
