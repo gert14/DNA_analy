@@ -23,6 +23,7 @@ public class Window {
 	JScrollPane dnacompl;
 	JLabel dna, a1_t, a2_t, a3_t, a4_t, a5_t, a6_t, a7_t;
 	JToggleButton a1, a2, a3, a4, a5, a6, a7;
+	JButton a8;
 	String temp, raw, dnaseq, result;
 
 	public Window(){
@@ -159,6 +160,12 @@ public class Window {
 		a7_t.setBounds(300,385,220,45);
 		a7_t.setForeground(Color.white);
 		p.add(a7_t);
+		
+		a8 = new JButton("switch");
+		a8.setBounds(d.width/2-80,d.height/2,80,30);
+		a8.addActionListener(action);
+		a8.setVisible(false);
+		p.add(a8);
 		
 		f.repaint();
 	}

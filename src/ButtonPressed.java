@@ -36,24 +36,7 @@ class ButtonPressed implements ActionListener{
 			
 		case "load example DNA":
 			//the given DNA sequence as an example
-			String example_dna = new String("ggaatttagggagttcccacattgcccagacgactcgtatagaattggtagttggccatg"
-										+	"cgtccatatcacaaagacacagtccctggccgaccacactgtaaccacgaatatgcccta"
-										+	"tcgtacgggttgggatgcacttttgagttatacgcgctcgaatctatgcccagtacacat"
-										+	"ggtgccgacacctaactaggcagtgaggggcactcagacctgacatgagcggaagaaaga"
-										+	"acccgcgggggccccacgacgtagcggcgacggctcaaccaatgccccgcccctttcata"
-										+	"aggccaagcggactgggctttcgcccgagtctaaacccactgtatttaccattcatagtc"
-										+	"aacagagggactttcaaaattcctaaactggttactgactaagaggaatcctcgcgctaa"
-										+	"tgaagacaacctccatagaggtcaaatggcgcgcagttgacttcagtattgaccttcttc"
-										+	"agggtcccccatctttgatacttcacttatggacccggccaccgtgagttgaatcccggc"
-										+	"gtccctcgcgtccccaacacagacaatatttttacgtgtccaagggcggaaagtgacgag"
-										+	"gtgagaactggcgccgcgagaccggcccgatttctaataggcgggatagagatctgcccg"
-										+	"acgcatttcacttgtagtcactcacggtatgactgtgcatgcactgaccgtcgctggcgt"
-										+	"gtctttaatttaagctaggcttgacgtggagtgcagaatgaccatgttcaaggtgcttcg"
-										+	"gggctatatacttgggataaacgcgatcctgcggagtagcgtcgagaacaccgactgccg"
-										+	"aatgtacaatccgcgtgacaatgccgaggctcgagatatcacttgaactgcgggcgaatc"
-										+	"gattcgagagcccgatcgttaacaagtcgtcggctgtagccaataatatcttggttttag"
-										+	"atcttgagtgtgggggcgtttacttaaccatccgaacgcg");
-			show_dna(example_dna);
+			show_dna(DNA_analyse.example_dna);
 			reset_buttons(true);
 			break;
 			
@@ -128,7 +111,7 @@ class ButtonPressed implements ActionListener{
 			break;
 			
 		case "occurrence of 'CTAG'":
-			// watch for the first occurence of 'ctag' 
+			// watch for the first occurence of 'ctag'
 			if (!DNA_analyse.w.a3.isSelected()){
 				DNA_analyse.w.dna.setText(DNA_analyse.w.dnaseq);
 				text="";
@@ -139,7 +122,7 @@ class ButtonPressed implements ActionListener{
 						+ (first_occurrence_of_ctag+1) + "</body></html>";
 				c = 12 + 4*(first_occurrence_of_ctag/60);
 				DNA_analyse.w.result = DNA_analyse.w.result.substring(0, first_occurrence_of_ctag+c)
-						+ "<font color = #00ff00>" 
+						+ "<font color = #ff0000>" 
 						+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c,first_occurrence_of_ctag+c+4) 
 						+ "</font>" 
 						+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c+4,DNA_analyse.w.result.length());
@@ -168,13 +151,15 @@ class ButtonPressed implements ActionListener{
 			
 		case "complementary":
 			// show the complementary of the whole sequence
-			if (!DNA_analyse.w.a4.isSelected()){
+			if (!DNA_analyse.w.a5.isSelected()){
 				text="";
 				DNA_analyse.w.dnacompl.setVisible(false);
+				DNA_analyse.w.a8.setVisible(false);
 			}
 			else {
 				text = analyse.complementary();
 				DNA_analyse.w.dnacompl.setVisible(true);
+				DNA_analyse.w.a8.setVisible(true);
 			}
 			DNA_analyse.w.a5_t.setText(text);
 			break;
@@ -210,6 +195,26 @@ class ButtonPressed implements ActionListener{
 						"for the correlation with<br>Frømingen's dischrypsia.</body></html>";
 			}
 			DNA_analyse.w.a7_t.setText(text);
+			break;
+			
+		case "switch":
+			DNA_analyse.w.raw = analyse.get_compl();
+			String temp = DNA_analyse.w.a5_t.getText();
+			DNA_analyse.w.a5_t.setText(DNA_analyse.w.dnaseq);
+			DNA_analyse.w.dnaseq = temp;
+			DNA_analyse.w.dna.setText(temp);
+			DNA_analyse.w.a1.setSelected(false);
+			DNA_analyse.w.a2.setSelected(false);
+			DNA_analyse.w.a3.setSelected(false);
+			DNA_analyse.w.a4.setSelected(false);
+			DNA_analyse.w.a6.setSelected(false);
+			DNA_analyse.w.a7.setSelected(false);
+			DNA_analyse.w.a1_t.setText("");
+			DNA_analyse.w.a2_t.setText("");
+			DNA_analyse.w.a3_t.setText("");
+			DNA_analyse.w.a4_t.setText("");
+			DNA_analyse.w.a6_t.setText("");
+			DNA_analyse.w.a7_t.setText("");
 			break;
 		}
 	}
@@ -251,6 +256,7 @@ class ButtonPressed implements ActionListener{
 		DNA_analyse.w.a5.setSelected(false);
 		DNA_analyse.w.a6.setSelected(false);
 		DNA_analyse.w.a7.setSelected(false);
+		DNA_analyse.w.a8.setVisible(false);
 		
 		DNA_analyse.w.a1_t.setText("");
 		DNA_analyse.w.a2_t.setText("");

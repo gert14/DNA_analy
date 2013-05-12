@@ -6,5 +6,6 @@ public interface AnalyseI {
 	public int[] nucleobase();		// method to count all nucleobases
 	public int[] pu_and_py();		// method to count purines than pyrimidines
 	public String complementary();	// method to calculate the complementary of the whole sequence
-	public int dischrypsia();		// methos to find correlationwith the early onset of Frømingen's dischrypsia
+	public int dischrypsia();		// method to find correlationwith the early onset of Frømingen's dischrypsia
+	public String get_compl();		// method to put the complementary seqeuence as dna seqeuence to analyse
 }

@@ -93,7 +93,7 @@ public class Analyse implements AnalyseI{
 			case 5:
 				++cbe;
 				DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-br*4-5) 
-						+ "<font color = #00ff00>" 
+						+ "<font color = #ff0000>" 
 						+ DNA_analyse.w.result.substring(i-br*4-5,i+1) 
 						+ "</font>" 
 						+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
@@ -119,7 +119,7 @@ public class Analyse implements AnalyseI{
 					+ DNA_analyse.w.result.substring(i,i+1) 
 					+ "</font>" 
 					+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
-				i+=29;
+				i+=28;
 				break;
 			case 'c':
 				++count[1];
@@ -128,7 +128,7 @@ public class Analyse implements AnalyseI{
 					+ DNA_analyse.w.result.substring(i,i+1) 
 					+ "</font>" 
 					+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
-				i+=29;
+				i+=28;
 				break;
 			case 'g':
 				++count[2];
@@ -137,7 +137,7 @@ public class Analyse implements AnalyseI{
 					+ DNA_analyse.w.result.substring(i,i+1) 
 					+ "</font>" 
 					+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
-				i+=29;				
+				i+=28;				
 				break;
 			case 't':
 				++count[3];
@@ -168,7 +168,7 @@ public class Analyse implements AnalyseI{
 		String comp = "<html><body>";
 		int len = DNA_analyse.w.raw.length();
 		for (int i=len-1; i>=0; --i){
-			if ((len-i)%60==0) comp += "<br>";
+			if (i<len-1 && (len-1-i)%60==0) comp += "<br>";
 			switch (DNA_analyse.w.raw.charAt(i)){
 			case 'a':
 				comp += 't';
@@ -225,13 +225,13 @@ public class Analyse implements AnalyseI{
 					//it have found 4 pyrimidines behind 4 purines
 					++count;
 					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-7-br1*4) 
-							+ "<font color = #0000ff>"
+							+ "<font color = #ff0000>"
 							+ DNA_analyse.w.result.substring(i-7-br1*4,i-3)
-							+ "</font><font color = #00ff00>"
+							+ "</font><font color = #0000ff>"
 							+ DNA_analyse.w.result.substring(i-3,i+1-br2*4)
 							+ "</font>" 
 							+ DNA_analyse.w.result.substring(i+1-br2*4,DNA_analyse.w.result.length());
-					i+=58+br1*4+br2*4;
+					i+=54+br1*4+br2*4;
 					br1=0;
 					br2=0;
 				}
@@ -239,5 +239,16 @@ public class Analyse implements AnalyseI{
 			}
 		}
 		return count;
+	}
+	
+	public String get_compl(){
+		String raw = new StringBuffer(DNA_analyse.w.raw).reverse().toString();
+		raw = raw.replace('a', '#');
+		raw = raw.replace('t', 'a');
+		raw = raw.replace('#', 't');
+		raw = raw.replace('c', '#');
+		raw = raw.replace('g', 'c');
+		raw = raw.replace('#', 'g');
+		return raw;
 	}
 }
