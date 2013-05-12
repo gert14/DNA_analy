@@ -39,6 +39,15 @@ starting the compiled program:
 
 ***************************************
 
+explanation about design:
+
+There are 4 classes and 1 Interface.
+The main class is DNA_analyse, it's contains the main function to starts the program and the example DNA sequence as a constant.
+At first, the main function create an instance of the window class, which is responsible to display the user interface and layout.
+The window class builds the user interface, and binds the buttons to an action handler, which is implemented by the ButtonPressed class. The function actionPerformed(ActionEvent e) of this class is called every time any button is clicked. It checks which button was clicked and perform the specified action. The logical parts of the analyese are implemented by the Analyse class, this functions defined in the Interface AnalyseI are called by the ButtonPressed class. When the analyse-function is finish, the ButtonClass adapts the display.
+
+***************************************
+
 description and user guide:
 
 When the program starts, you will see a white rectangle in the upper right corner, and three buttons above them.

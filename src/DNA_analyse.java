@@ -9,7 +9,7 @@
 public class DNA_analyse {
 	
 	static Window w;
-	static String example_dna = new String("ggaatttagggagttcccacattgcccagacgactcgtatagaattggtagttggccatg"
+	final static String EXAMPLE_DNA = new String("ggaatttagggagttcccacattgcccagacgactcgtatagaattggtagttggccatg"
 										+	"cgtccatatcacaaagacacagtccctggccgaccacactgtaaccacgaatatgcccta"
 										+	"tcgtacgggttgggatgcacttttgagttatacgcgctcgaatctatgcccagtacacat"
 										+	"ggtgccgacacctaactaggcagtgaggggcactcagacctgacatgagcggaagaaaga"

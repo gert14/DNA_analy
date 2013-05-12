@@ -36,7 +36,7 @@ class ButtonPressed implements ActionListener{
 			
 		case "load example DNA":
 			//the given DNA sequence as an example
-			show_dna(DNA_analyse.example_dna);
+			show_dna(DNA_analyse.EXAMPLE_DNA);
 			reset_buttons(true);
 			break;
 			
