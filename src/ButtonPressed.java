@@ -118,15 +118,20 @@ class ButtonPressed implements ActionListener{
 			}
 			else {
 				first_occurrence_of_ctag = DNA_analyse.w.raw.indexOf("ctag");
-				text = "<html><body>" +  "The first occurrence of<br>'CTAG' is at position "
-						+ (first_occurrence_of_ctag+1) + "</body></html>";
-				c = 12 + 4*(first_occurrence_of_ctag/60);
-				DNA_analyse.w.result = DNA_analyse.w.result.substring(0, first_occurrence_of_ctag+c)
-						+ "<font color = #ff0000>" 
-						+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c,first_occurrence_of_ctag+c+4) 
-						+ "</font>" 
-						+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c+4,DNA_analyse.w.result.length());
-				DNA_analyse.w.dna.setText(DNA_analyse.w.result);
+				if (first_occurrence_of_ctag>=0){
+					text = "<html><body>" +  "The first occurrence of<br>'CTAG' is at position "
+							+ (first_occurrence_of_ctag+1) + "</body></html>";
+					c = 12 + 4*(first_occurrence_of_ctag/60);
+					DNA_analyse.w.result = DNA_analyse.w.result.substring(0, first_occurrence_of_ctag+c)
+							+ "<font color = #ff0000>" 
+							+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c,first_occurrence_of_ctag+c+4) 
+							+ "</font>" 
+							+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c+4,DNA_analyse.w.result.length());
+					DNA_analyse.w.dna.setText(DNA_analyse.w.result);
+				}
+				else{
+					text = "<html><body>There is no occurrence of 'CTAG' in this DNA sequence.</body></html>";
+				}
 			}
 			DNA_analyse.w.a3_t.setText(text);
 			break;

@@ -50,6 +50,10 @@ public class Analyse implements AnalyseI{
 				br=ok>0?br+1:0;
 				continue;
 			}
+			if (DNA_analyse.w.result.charAt(i)=='c' && ok!=0 &&ok!=3){
+				ok=1;
+				continue;
+			}
 			switch (ok){
 			// ok counts the number of agreeing letters to complete the pattern
 			case 0:
@@ -84,22 +88,21 @@ public class Analyse implements AnalyseI{
 				}
 				break;
 			case 4:
-				if (DNA_analyse.w.result.charAt(i)!='t' && DNA_analyse.w.result.charAt(i+1)!='t') ++ok;
+				if (DNA_analyse.w.result.charAt(i)!='t' && DNA_analyse.w.result.charAt(i+1)!='t'){
+					++cbe;
+					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-br*4-4) 
+							+ "<font color = #ff0000>" 
+							+ DNA_analyse.w.result.substring(i-br*4-4,i+2) 
+							+ "</font>" 
+							+ DNA_analyse.w.result.substring(i+2,DNA_analyse.w.result.length());
+					i+=30;
+					ok=0;
+					br=0;
+				}
 				else {
 					ok=0;
 					br=0;
 				}
-				break;
-			case 5:
-				++cbe;
-				DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-br*4-5) 
-						+ "<font color = #ff0000>" 
-						+ DNA_analyse.w.result.substring(i-br*4-5,i+1) 
-						+ "</font>" 
-						+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
-				i+=30;
-				ok=0;
-				br=0;
 				break;
 			}
 		}
