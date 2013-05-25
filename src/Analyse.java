@@ -227,13 +227,13 @@ public class Analyse implements AnalyseI{
 				if (py==4){
 					//it have found 4 pyrimidines behind 4 purines
 					++count;
-					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-7-br1*4) 
+					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-7-br1*4-br2*4) 
 							+ "<font color = #ff0000>"
-							+ DNA_analyse.w.result.substring(i-7-br1*4,i-3)
+							+ DNA_analyse.w.result.substring(i-7-br1*4-br2*4,i-3-br2*4)
 							+ "</font><font color = #0000ff>"
-							+ DNA_analyse.w.result.substring(i-3,i+1-br2*4)
+							+ DNA_analyse.w.result.substring(i-3-br2*4,i+1)
 							+ "</font>" 
-							+ DNA_analyse.w.result.substring(i+1-br2*4,DNA_analyse.w.result.length());
+							+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
 					i+=54+br1*4+br2*4;
 					br1=0;
 					br2=0;
