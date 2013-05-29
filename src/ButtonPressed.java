@@ -22,7 +22,7 @@ class ButtonPressed implements ActionListener{
 		String text = "";
 		int first_occurrence_of_ctag;
 		int count[] = new int[4];
-		int c;
+		int c, br, len;
 		int count_ty;
 		int count_be;
 		
@@ -110,23 +110,26 @@ class ButtonPressed implements ActionListener{
 			DNA_analyse.w.a2_t.setText(text);
 			break;
 			
-		case "occurrence of 'CTAG'":
+		case "occurrence of: ... -->":
 			// watch for the first occurence of 'ctag'
 			if (!DNA_analyse.w.a3.isSelected()){
 				DNA_analyse.w.dna.setText(DNA_analyse.w.dnaseq);
 				text="";
 			}
 			else {
-				first_occurrence_of_ctag = DNA_analyse.w.raw.indexOf("ctag");
+				first_occurrence_of_ctag = analyse.first_occur(DNA_analyse.w.a3_i.getText()); 
 				if (first_occurrence_of_ctag>=0){
-					text = "<html><body>" +  "The first occurrence of<br>'CTAG' is at position "
+					text = "<html><body>" +  "The first occurrence of '" + DNA_analyse.w.a3_i.getText()
+							+ " is at position '"
 							+ (first_occurrence_of_ctag+1) + "</body></html>";
 					c = 12 + 4*(first_occurrence_of_ctag/60);
+					len = DNA_analyse.w.a3_i.getText().length();
+					br = (first_occurrence_of_ctag % 60 + len) > 60 ? 1 : 0;
 					DNA_analyse.w.result = DNA_analyse.w.result.substring(0, first_occurrence_of_ctag+c)
 							+ "<font color = #ff0000>" 
-							+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c,first_occurrence_of_ctag+c+4) 
+							+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c,first_occurrence_of_ctag+c+len+br*4) 
 							+ "</font>" 
-							+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c+4,DNA_analyse.w.result.length());
+							+ DNA_analyse.w.result.substring(first_occurrence_of_ctag+c+len+br*4,DNA_analyse.w.result.length());
 					DNA_analyse.w.dna.setText(DNA_analyse.w.result);
 				}
 				else{

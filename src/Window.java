@@ -5,6 +5,7 @@ import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
+import javax.swing.JTextField;
 import javax.swing.JToggleButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,6 +25,7 @@ public class Window {
 	JLabel dna, a1_t, a2_t, a3_t, a4_t, a5_t, a6_t, a7_t;
 	JToggleButton a1, a2, a3, a4, a5, a6, a7;
 	JButton a8;
+	JTextField a3_i;
 	String temp, raw, dnaseq, result;
 
 	public Window(){
@@ -101,16 +103,22 @@ public class Window {
 		a2_t.setForeground(Color.white);
 		p.add(a2_t);
 		
-		a3 = new JToggleButton("occurrence of 'CTAG'");
-		a3.setBounds(50,350,220,30);
+		a3 = new JToggleButton("occurrence of: ... -->");
+		a3.setBounds(50,500,220,30);
 		a3.addActionListener(action);
 		a3.setEnabled(false);
 		p.add(a3);
 		
 		a3_t = new JLabel();
-		a3_t.setBounds(50,385,220,30);
+		a3_t.setBounds(50,535,470,30);
 		a3_t.setForeground(Color.white);
 		p.add(a3_t);
+		
+		a3_i = new JTextField("ctag");
+		a3_i.setBounds(300,500,220,30);
+		a3_i.setVisible(true);
+		a3_i.setFont(new Font("sansserif", Font.BOLD, 15));
+		p.add(a3_i);
 		
 		a4 = new JToggleButton("count nucleobases");
 		a4.setBounds(300,50,220,30);
@@ -124,7 +132,7 @@ public class Window {
 		p.add(a4_t);
 		
 		a5 = new JToggleButton("complementary");
-		a5.setBounds(300,600,220,30);
+		a5.setBounds(300,350,220,30);
 		a5.addActionListener(action);
 		a5.setEnabled(false);
 		p.add(a5);
@@ -151,13 +159,13 @@ public class Window {
 		p.add(a6_t);
 		
 		a7 = new JToggleButton("Frømingen's dischrypsia");
-		a7.setBounds(300,350,220,30);
+		a7.setBounds(50,350,220,30);
 		a7.addActionListener(action);
 		a7.setEnabled(false);
 		p.add(a7);
 		
 		a7_t = new JLabel();
-		a7_t.setBounds(300,385,220,45);
+		a7_t.setBounds(50,385,220,45);
 		a7_t.setForeground(Color.white);
 		p.add(a7_t);
 		

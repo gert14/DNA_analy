@@ -254,4 +254,8 @@ public class Analyse implements AnalyseI{
 		raw = raw.replace('#', 'g');
 		return raw;
 	}
+	
+	public int first_occur(String subseq){
+		return DNA_analyse.w.raw.indexOf(subseq);
+	}	
 }
