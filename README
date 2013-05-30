@@ -54,10 +54,10 @@ When the program starts, you will see a white rectangle in the upper right corne
 Click the first button ('load example DNA') to load the DNA sequence given in the assignment, or click the second button ('load DNA from file') to load an other DNA sequence from your filesystem. The DNA sequence has to be available in .txt or .dat format.
 The loaded DNA seqence will shown in the white rectangle. The programm automatically inserts a newline after every 60 signs. If the sequence is to large for the rectangle, you can scroll the content with the scroll-bar on the right side, this bar will only shown if it's required. Click the third button ('clear DNA') to clear the rectangle.
 
-If a DNA sequence is loaded, the seven function-buttons on the left gets active. Click on one of the buttons to accomplish the specified analyse on the DNA sequence, you will see the result unter the button.
-The pattern matching of the different analyzes are marked in the DNA sequence. When you click the button 'complementary', the complementary sequence will shown in the lower right corner in a second rectangle, and additionally a further button called 'switch', which is used to set the complementary DNA sequence in the upper box and vice versa, to anaylse the complementary DNA sequence.
+If a DNA sequence is loaded, the eight function-buttons on the left gets active. Click on one of the buttons to accomplish the specified analysis on the DNA sequence, you will see the result unter the button.
+The pattern matching of the different analyzes are marked in the DNA sequence. When you click the button 'complementary', the complementary sequence will shown in the lower right corner in a second rectangle, and additionally a further button called 'switch', which is used to set the complementary DNA sequence in the upper box and vice versa, to anaylze the complementary DNA sequence.
 
-Click the function-button a second time to clear the result from the specified analyse.
+Click the function-button a second time to clear the result from the specified analysis.
 Click the EXIT button in the lower left corner to quit the program.
 
 HAVE FUN!!!
