@@ -257,5 +257,37 @@ public class Analyse implements AnalyseI{
 	
 	public int first_occur(String subseq){
 		return DNA_analyse.w.raw.indexOf(subseq);
-	}	
+	}
+	
+	public int find_all(String pattern){
+		int len = pattern.length();
+		int br=0, c=0, found=0;
+		for (int i=12; i<DNA_analyse.w.result.length()-14-len; ++i){
+			if (DNA_analyse.w.result.charAt(i)=='<') {
+				// to skipping the '<br>'-tags
+				i+=3;
+				br=c>0?br+1:0; //if there is a <br>-tag inside a pattern
+				continue;
+			}
+			if (DNA_analyse.w.result.charAt(i)==pattern.charAt(c)){
+				++c;
+				if (c==len){
+					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-c+1-4*br) 
+							+ "<font color = #ff0000>" 
+							+ DNA_analyse.w.result.substring(i-c+1-4*br,i+1) 
+							+ "</font>" 
+							+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
+					i+=29+4*br;
+					c = 0;
+					br = 0;
+					++found;
+				}
+			}
+			else if (c>0){
+				c = 0;
+				br = 0;
+			}
+		}
+		return found;
+	}
 }

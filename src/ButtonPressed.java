@@ -19,7 +19,7 @@ class ButtonPressed implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		String cmd = e.getActionCommand();
-		String text = "";
+		String text = "", pattern;
 		int first_occurrence_of_ctag;
 		int count[] = new int[4];
 		int c, br, len;
@@ -205,6 +205,20 @@ class ButtonPressed implements ActionListener{
 			DNA_analyse.w.a7_t.setText(text);
 			break;
 			
+		case "find all: ... -->":
+			if (!DNA_analyse.w.a9.isSelected()){
+				DNA_analyse.w.dna.setText(DNA_analyse.w.dnaseq);
+				text="";
+			}
+			else {
+				pattern = DNA_analyse.w.a9_i.getText();
+				c = analyse.find_all(pattern);
+				DNA_analyse.w.dna.setText(DNA_analyse.w.result);
+				text = "<html><body>The pattern '" + pattern + "' was founded " + c + " times.</body></html>";
+			}
+			DNA_analyse.w.a9_t.setText(text);
+			break;
+			
 		case "switch":
 			DNA_analyse.w.raw = analyse.get_compl();
 			String temp = DNA_analyse.w.a5_t.getText();
@@ -217,12 +231,14 @@ class ButtonPressed implements ActionListener{
 			DNA_analyse.w.a4.setSelected(false);
 			DNA_analyse.w.a6.setSelected(false);
 			DNA_analyse.w.a7.setSelected(false);
+			DNA_analyse.w.a9.setSelected(false);
 			DNA_analyse.w.a1_t.setText("");
 			DNA_analyse.w.a2_t.setText("");
 			DNA_analyse.w.a3_t.setText("");
 			DNA_analyse.w.a4_t.setText("");
 			DNA_analyse.w.a6_t.setText("");
 			DNA_analyse.w.a7_t.setText("");
+			DNA_analyse.w.a9_t.setText("");
 			break;
 		}
 	}
@@ -245,6 +261,7 @@ class ButtonPressed implements ActionListener{
 		DNA_analyse.w.a5.setEnabled(true);
 		DNA_analyse.w.a6.setEnabled(true);
 		DNA_analyse.w.a7.setEnabled(true);
+		DNA_analyse.w.a9.setEnabled(true);
 	}
 	
 	private void reset_buttons(boolean enabled){
@@ -256,6 +273,7 @@ class ButtonPressed implements ActionListener{
 		DNA_analyse.w.a5.setEnabled(enabled);
 		DNA_analyse.w.a6.setEnabled(enabled);
 		DNA_analyse.w.a7.setEnabled(enabled);
+		DNA_analyse.w.a9.setEnabled(enabled);
 		
 		DNA_analyse.w.a1.setSelected(false);
 		DNA_analyse.w.a2.setSelected(false);
@@ -264,6 +282,8 @@ class ButtonPressed implements ActionListener{
 		DNA_analyse.w.a5.setSelected(false);
 		DNA_analyse.w.a6.setSelected(false);
 		DNA_analyse.w.a7.setSelected(false);
+		DNA_analyse.w.a9.setSelected(false);
+		
 		DNA_analyse.w.a8.setVisible(false);
 		
 		DNA_analyse.w.a1_t.setText("");
@@ -273,6 +293,7 @@ class ButtonPressed implements ActionListener{
 		DNA_analyse.w.a5_t.setText("");
 		DNA_analyse.w.a6_t.setText("");
 		DNA_analyse.w.a7_t.setText("");
+		DNA_analyse.w.a9_t.setText("");
 		
 		DNA_analyse.w.dnacompl.setVisible(false);
 	}

@@ -10,6 +10,7 @@ import javax.swing.JToggleButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 
 /**
  * 
@@ -22,10 +23,10 @@ public class Window {
 	
 	JFrame f;
 	JScrollPane dnacompl;
-	JLabel dna, a1_t, a2_t, a3_t, a4_t, a5_t, a6_t, a7_t;
-	JToggleButton a1, a2, a3, a4, a5, a6, a7;
+	JLabel dna, a1_t, a2_t, a3_t, a4_t, a5_t, a6_t, a7_t, a9_t;
+	JToggleButton a1, a2, a3, a4, a5, a6, a7, a9;
 	JButton a8;
-	JTextField a3_i;
+	JTextField a3_i, a9_i;
 	String temp, raw, dnaseq, result;
 
 	public Window(){
@@ -93,29 +94,30 @@ public class Window {
 		p.add(a1_t);
 		
 		a2 = new JToggleButton("brown eyes");
-		a2.setBounds(50,200,220,30);
+		a2.setBounds(50,180,220,30);
 		a2.addActionListener(action);	
 		a2.setEnabled(false);
 		p.add(a2);
 		
 		a2_t = new JLabel();
-		a2_t.setBounds(50,235,220,45);
+		a2_t.setBounds(50,215,220,45);
 		a2_t.setForeground(Color.white);
 		p.add(a2_t);
 		
 		a3 = new JToggleButton("occurrence of: ... -->");
-		a3.setBounds(50,500,220,30);
+		a3.setHorizontalAlignment(SwingConstants.RIGHT);
+		a3.setBounds(50,440,220,30);
 		a3.addActionListener(action);
 		a3.setEnabled(false);
 		p.add(a3);
 		
 		a3_t = new JLabel();
-		a3_t.setBounds(50,535,470,30);
+		a3_t.setBounds(50,475,470,30);
 		a3_t.setForeground(Color.white);
 		p.add(a3_t);
 		
 		a3_i = new JTextField("ctag");
-		a3_i.setBounds(300,500,220,30);
+		a3_i.setBounds(300,440,220,30);
 		a3_i.setVisible(true);
 		a3_i.setFont(new Font("sansserif", Font.BOLD, 15));
 		p.add(a3_i);
@@ -132,7 +134,7 @@ public class Window {
 		p.add(a4_t);
 		
 		a5 = new JToggleButton("complementary");
-		a5.setBounds(300,350,220,30);
+		a5.setBounds(300,310,220,30);
 		a5.addActionListener(action);
 		a5.setEnabled(false);
 		p.add(a5);
@@ -148,24 +150,24 @@ public class Window {
 		p.add(dnacompl);
 		
 		a6 = new JToggleButton("purines & pyrimidines");
-		a6.setBounds(300,200,220,30);
+		a6.setBounds(300,180,220,30);
 		a6.addActionListener(action);		
 		a6.setEnabled(false);
 		p.add(a6);
 		
 		a6_t = new JLabel();
-		a6_t.setBounds(300,235,220,60);
+		a6_t.setBounds(300,215,220,60);
 		a6_t.setForeground(Color.white);
 		p.add(a6_t);
 		
 		a7 = new JToggleButton("Frømingen's dischrypsia");
-		a7.setBounds(50,350,220,30);
+		a7.setBounds(50,310,220,30);
 		a7.addActionListener(action);
 		a7.setEnabled(false);
 		p.add(a7);
 		
 		a7_t = new JLabel();
-		a7_t.setBounds(50,385,220,45);
+		a7_t.setBounds(50,345,220,45);
 		a7_t.setForeground(Color.white);
 		p.add(a7_t);
 		
@@ -174,6 +176,24 @@ public class Window {
 		a8.addActionListener(action);
 		a8.setVisible(false);
 		p.add(a8);
+		
+		a9 = new JToggleButton("find all: ... -->");
+		a9.setHorizontalAlignment(SwingConstants.RIGHT);
+		a9.setBounds(50,590,220,30);
+		a9.addActionListener(action);
+		a9.setEnabled(false);
+		p.add(a9);
+		
+		a9_t = new JLabel();
+		a9_t.setBounds(50,625,470,30);
+		a9_t.setForeground(Color.white);
+		p.add(a9_t);
+		
+		a9_i = new JTextField();
+		a9_i.setBounds(300,590,220,30);
+		a9_i.setVisible(true);
+		a9_i.setFont(new Font("sansserif", Font.BOLD, 15));
+		p.add(a9_i);
 		
 		f.repaint();
 	}
