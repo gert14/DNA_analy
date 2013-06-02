@@ -132,6 +132,9 @@ public class Window {
 				c = e.getKeyChar();
 				kc = e.getKeyCode();
 				if (!(c=='c' || c=='C' || c=='g' || c=='G' || c=='a' || c=='A' || c=='t' || c=='T' || c<32
+						|| kc==KeyEvent.VK_CONTROL
+						|| kc==KeyEvent.VK_ALT
+						|| kc==KeyEvent.VK_SHIFT
 						|| kc==KeyEvent.VK_HOME
 						|| kc==KeyEvent.VK_END
 						|| kc==KeyEvent.VK_DELETE
@@ -228,6 +231,9 @@ public class Window {
 				c = e.getKeyChar();
 				kc = e.getKeyCode();
 				if (!(c=='c' || c=='C' || c=='g' || c=='G' || c=='a' || c=='A' || c=='t' || c=='T' || c<32
+						|| kc==KeyEvent.VK_CONTROL
+						|| kc==KeyEvent.VK_ALT
+						|| kc==KeyEvent.VK_SHIFT
 						|| kc==KeyEvent.VK_HOME
 						|| kc==KeyEvent.VK_END
 						|| kc==KeyEvent.VK_DELETE
