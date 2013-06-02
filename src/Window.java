@@ -3,6 +3,9 @@ import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
@@ -104,7 +107,7 @@ public class Window {
 		a2_t.setForeground(Color.white);
 		p.add(a2_t);
 		
-		a3 = new JToggleButton("occurrence of: ... -->");
+		a3 = new JToggleButton("first occurrence of:");
 		a3.setHorizontalAlignment(SwingConstants.RIGHT);
 		a3.setBounds(50,440,220,30);
 		a3.addActionListener(action);
@@ -120,6 +123,29 @@ public class Window {
 		a3_i.setBounds(300,440,220,30);
 		a3_i.setVisible(true);
 		a3_i.setFont(new Font("sansserif", Font.BOLD, 15));
+		a3_i.addKeyListener(new KeyListener() {
+			char c;
+			int kc;
+			int cp;
+			public void keyTyped(KeyEvent e) {	}
+			public void keyReleased(KeyEvent e) {
+				c = e.getKeyChar();
+				kc = e.getKeyCode();
+				if (!(c=='c' || c=='C' || c=='g' || c=='G' || c=='a' || c=='A' || c=='t' || c=='T' || c<32
+						|| kc==KeyEvent.VK_HOME
+						|| kc==KeyEvent.VK_END
+						|| kc==KeyEvent.VK_DELETE
+						|| kc==KeyEvent.VK_LEFT
+						|| kc==KeyEvent.VK_RIGHT
+						|| kc==KeyEvent.VK_UP
+						|| kc==KeyEvent.VK_DOWN)){
+					cp = a3_i.getCaretPosition();
+					a3_i.setText(a3_i.getText().replaceAll(""+c, ""));
+					a3_i.setCaretPosition(cp-1);
+				}
+			}
+			public void keyPressed(KeyEvent e) {}
+		});
 		p.add(a3_i);
 		
 		a4 = new JToggleButton("count nucleobases");
@@ -177,7 +203,7 @@ public class Window {
 		a8.setVisible(false);
 		p.add(a8);
 		
-		a9 = new JToggleButton("find all: ... -->");
+		a9 = new JToggleButton("all occurrence of:");
 		a9.setHorizontalAlignment(SwingConstants.RIGHT);
 		a9.setBounds(50,590,220,30);
 		a9.addActionListener(action);
@@ -189,10 +215,33 @@ public class Window {
 		a9_t.setForeground(Color.white);
 		p.add(a9_t);
 		
-		a9_i = new JTextField();
+		a9_i = new JTextField("");
 		a9_i.setBounds(300,590,220,30);
 		a9_i.setVisible(true);
 		a9_i.setFont(new Font("sansserif", Font.BOLD, 15));
+		a9_i.addKeyListener(new KeyListener() {
+			char c;
+			int kc;
+			int cp;
+			public void keyTyped(KeyEvent e) {	}
+			public void keyReleased(KeyEvent e) {
+				c = e.getKeyChar();
+				kc = e.getKeyCode();
+				if (!(c=='c' || c=='C' || c=='g' || c=='G' || c=='a' || c=='A' || c=='t' || c=='T' || c<32
+						|| kc==KeyEvent.VK_HOME
+						|| kc==KeyEvent.VK_END
+						|| kc==KeyEvent.VK_DELETE
+						|| kc==KeyEvent.VK_LEFT
+						|| kc==KeyEvent.VK_RIGHT
+						|| kc==KeyEvent.VK_UP
+						|| kc==KeyEvent.VK_DOWN)){
+					cp = a9_i.getCaretPosition();
+					a9_i.setText(a9_i.getText().replaceAll(""+c, ""));
+					a9_i.setCaretPosition(cp-1);
+				}
+			}
+			public void keyPressed(KeyEvent e) {}
+		});
 		p.add(a9_i);
 		
 		f.repaint();

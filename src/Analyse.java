@@ -19,7 +19,7 @@ public class Analyse implements AnalyseI{
 				br=c>0?br+1:0; //if there is a <br>-tag inside a pattern
 				continue;
 				}
-			if (DNA_analyse.w.result.charAt(i)=='g') ++c;
+			if (DNA_analyse.w.result.charAt(i)=='g' || DNA_analyse.w.result.charAt(i)=='G') ++c;
 			else if (c>=3){
 				++cty;
 				DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-c-4*br) 
@@ -50,36 +50,39 @@ public class Analyse implements AnalyseI{
 				br=ok>0?br+1:0;
 				continue;
 			}
-			if (DNA_analyse.w.result.charAt(i)=='c' && ok!=0 &&ok!=3){
+			if ((DNA_analyse.w.result.charAt(i)=='c' || DNA_analyse.w.result.charAt(i)=='C') && ok!=0 &&ok!=3){
 				ok=1;
 				continue;
 			}
 			switch (ok){
 			// ok counts the number of agreeing letters to complete the pattern
 			case 0:
-				if (DNA_analyse.w.result.charAt(i)=='c') ++ok;
+				if (DNA_analyse.w.result.charAt(i)=='c' || DNA_analyse.w.result.charAt(i)=='C') ++ok;
 				else {
 					ok=0;
 					br=0;
 				}
 				break;
 			case 1:
-				if (DNA_analyse.w.result.charAt(i)=='a') ++ok;
+				if (DNA_analyse.w.result.charAt(i)=='a' || DNA_analyse.w.result.charAt(i)=='A') ++ok;
 				else {
 					ok=0;
 					br=0;
 				}
 				break;
 			case 2:
-				if (DNA_analyse.w.result.charAt(i)=='g') ++ok;
+				if (DNA_analyse.w.result.charAt(i)=='g' || DNA_analyse.w.result.charAt(i)=='G') ++ok;
 				else {
 					ok=0;
 					br=0;
 				}
 				break;
 			case 3:
-				if (DNA_analyse.w.result.charAt(i)=='c' && DNA_analyse.w.result.charAt(i+1)!='c' 
-				 || DNA_analyse.w.result.charAt(i)=='g' && DNA_analyse.w.result.charAt(i+1)!='g'){
+				if (((DNA_analyse.w.result.charAt(i)=='c' || DNA_analyse.w.result.charAt(i)=='C') 
+				  && !(DNA_analyse.w.result.charAt(i+1)=='c' || DNA_analyse.w.result.charAt(i+1)=='C'))
+				  		|| 
+				 	((DNA_analyse.w.result.charAt(i)=='g' || DNA_analyse.w.result.charAt(i)=='G') 
+			      && !(DNA_analyse.w.result.charAt(i+1)=='g' || DNA_analyse.w.result.charAt(i+1)=='G'))){
 					++ok;
 				}
 				else {
@@ -88,7 +91,8 @@ public class Analyse implements AnalyseI{
 				}
 				break;
 			case 4:
-				if (DNA_analyse.w.result.charAt(i)!='t' && DNA_analyse.w.result.charAt(i+1)!='t'){
+				if (DNA_analyse.w.result.charAt(i)!='t' && DNA_analyse.w.result.charAt(i)!='T'
+				  && DNA_analyse.w.result.charAt(i+1)!='t' && DNA_analyse.w.result.charAt(i+1)!='T'){
 					++cbe;
 					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-br*4-4) 
 							+ "<font color = #ff0000>" 
@@ -115,7 +119,7 @@ public class Analyse implements AnalyseI{
 		for (int i=12; i<DNA_analyse.w.result.length()-14; ++i){
 			if (DNA_analyse.w.result.charAt(i)=='<') { i+=3; continue; }
 			switch (DNA_analyse.w.result.charAt(i)){
-			case 'a':
+			case 'a': case 'A':
 				++count[0];
 				DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i) 
 					+ "<font color = #ff0000>" 
@@ -124,7 +128,7 @@ public class Analyse implements AnalyseI{
 					+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
 				i+=28;
 				break;
-			case 'c':
+			case 'c': case 'C':
 				++count[1];
 				DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i) 
 					+ "<font color = #00ff00>" 
@@ -133,7 +137,7 @@ public class Analyse implements AnalyseI{
 					+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
 				i+=28;
 				break;
-			case 'g':
+			case 'g': case 'G':
 				++count[2];
 				DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i) 
 					+ "<font color = #0000ff>" 
@@ -155,10 +159,10 @@ public class Analyse implements AnalyseI{
 		int[] count = new int[2]; //purines, pyrimidines
 		for (int i=0; i<DNA_analyse.w.raw.length(); ++i){
 			switch (DNA_analyse.w.raw.charAt(i)){
-			case 'a': case 'g':
+			case 'a': case 'A': case 'g': case 'G':
 				++count[0];
 				break;
-			case 'c': case 't':
+			case 'c': case 'C': case 't': case 'T':
 				++count[1];
 				break;
 			}
@@ -169,9 +173,9 @@ public class Analyse implements AnalyseI{
 	public String complementary(){
 		//build the complementary of the dna sequence
 		String comp = "<html><body>";
-		int len = DNA_analyse.w.raw.length();
-		for (int i=len-1; i>=0; --i){
-			if (i<len-1 && (len-1-i)%60==0) comp += "<br>";
+		int len = DNA_analyse.w.raw.length()-1;
+		for (int i=len; i>=0; --i){
+			if (i-len!=0 && (i-len)%60==0) comp += "<br>";
 			switch (DNA_analyse.w.raw.charAt(i)){
 			case 'a':
 				comp += 't';
@@ -184,6 +188,18 @@ public class Analyse implements AnalyseI{
 				break;
 			case 't':
 				comp += 'a';
+				break;
+			case 'A':
+				comp += 'T';
+				break;
+			case 'C':
+				comp += 'G';
+				break;
+			case 'G':
+				comp += 'C';
+				break;
+			case 'T':
+				comp += 'A';
 				break;
 			}
 		}
@@ -207,7 +223,7 @@ public class Analyse implements AnalyseI{
 				continue; 
 			}
 			switch (DNA_analyse.w.result.charAt(i)){
-			case 'a': case 'g':
+			case 'a': case 'g': case 'A': case 'G':
 				if (check){
 					pu_4 = false;
 				}
@@ -216,7 +232,7 @@ public class Analyse implements AnalyseI{
 				++ pu;
 				if (pu==4) pu_4 = true; //it have found 4 purines
 				break;
-			case 'c': case 't':
+			case 'c': case 't': case 'C': case 'T':
 				check = true;
 				pu = 0;
 				if (pu_4) ++py;
@@ -252,6 +268,13 @@ public class Analyse implements AnalyseI{
 		raw = raw.replace('c', '#');
 		raw = raw.replace('g', 'c');
 		raw = raw.replace('#', 'g');
+		
+		raw = raw.replace('A', '#');
+		raw = raw.replace('T', 'A');
+		raw = raw.replace('#', 'T');
+		raw = raw.replace('C', '#');
+		raw = raw.replace('G', 'C');
+		raw = raw.replace('#', 'G');
 		return raw;
 	}
 	
@@ -262,19 +285,20 @@ public class Analyse implements AnalyseI{
 	public int find_all(String pattern){
 		int len = pattern.length();
 		int br=0, c=0, found=0;
-		for (int i=12; i<DNA_analyse.w.result.length()-14-len; ++i){
+		for (int i=12; i<=DNA_analyse.w.result.length()-14-(len-c); ++i){
 			if (DNA_analyse.w.result.charAt(i)=='<') {
-				// to skipping the '<br>'-tags
+				// to skip the '<br>'-tags
 				i+=3;
 				br=c>0?br+1:0; //if there is a <br>-tag inside a pattern
 				continue;
 			}
-			if (DNA_analyse.w.result.charAt(i)==pattern.charAt(c)){
+			if (DNA_analyse.w.result.charAt(i)==Character.toUpperCase(pattern.charAt(c)) ||
+				DNA_analyse.w.result.charAt(i)==Character.toLowerCase(pattern.charAt(c))){
 				++c;
 				if (c==len){
-					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i-c+1-4*br) 
+					DNA_analyse.w.result = DNA_analyse.w.result.substring(0,i+1-len-4*br) 
 							+ "<font color = #ff0000>" 
-							+ DNA_analyse.w.result.substring(i-c+1-4*br,i+1) 
+							+ DNA_analyse.w.result.substring(i+1-len-4*br,i+1) 
 							+ "</font>" 
 							+ DNA_analyse.w.result.substring(i+1,DNA_analyse.w.result.length());
 					i+=29+4*br;
@@ -284,6 +308,7 @@ public class Analyse implements AnalyseI{
 				}
 			}
 			else if (c>0){
+				i-=c;
 				c = 0;
 				br = 0;
 			}
