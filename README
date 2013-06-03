@@ -19,10 +19,9 @@ The program is released under the GPL 3.0 License, for more information read the
 compile the program:
 
 LINUX:
-use the 'make' command to build a jar file and a executable script automatically, which starts the program
+use the 'make' command to build a jar-file and a executable script-file which starts the program
 
 WINDOWS:
-
 The Main-class is DNA_analyse.java
 
 - compile the program with the console line (in the src folder): 'javac -target 1.7 *.java'
