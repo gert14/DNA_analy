@@ -101,7 +101,7 @@ class ButtonPressed implements ActionListener{
 																	//highlighted founded patterns
 				//display infos about the result:
 				text = "<html>" + count_ty + " patterns found";
-				if (count_ty > 0) text += "<br>RISK for tyberius syndrome.";
+				if (count_ty == 3) text += "<br>RISK for tyberius syndrome.";
 				else text += "<br>NO risk for tyberius syndrome.";
 				text += "</html>";
 			}
